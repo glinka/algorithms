@@ -12,7 +12,7 @@ class PercolationStats {
 
     for (i <- 0 until trials) {
       // initialize new union find algorithm for n*n grid with two helper nodes at either end
-      var uf = new QuickUnionUF(n*n + 2); // QuickFindUF(n*n + 2);
+      var uf = new WeightedQuickUnionByHeightUF(n*n + 2); // QuickUnionUF(n*n + 2); // QuickFindUF(n*n + 2);
       var opened: Int = 0;
       // fill grid indicating whether a site is open or closed with zeros (closed) except for two end nodes that are open
       var grid_closed = fill[Boolean](n*n + 2)(true);
