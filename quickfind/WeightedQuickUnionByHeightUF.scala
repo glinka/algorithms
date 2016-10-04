@@ -19,7 +19,7 @@ class WeightedQuickUnionByHeightUF(val n: Int) {
   def find(i: Int): Int = {
     val iid = sites(i);
     if (iid != i) find(iid);
-    iid;
+    else iid;
   }
 
   def union(i: Int,j: Int): Unit = {
