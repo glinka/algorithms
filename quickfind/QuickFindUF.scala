@@ -1,43 +1,62 @@
-class QuickFind(n: Int) {
+import Array._
+import scala.io.StdIn.{readInt, readLine}
+
+class QuickFindUF(val n: Int) {
 
   private var sites: Array[Int] = ofDim[Int](n);
-  for (i <- 0 to n) {
-    sites[i] = i;
+  for (i <- 0 until n) {
+    sites(i) = i;
   }
-
   private var nsites: Int = n;
-
-  def count: Int = n;
+  def count: Int = nsites;
 
   def connected(i: Int, j: Int): Boolean = {
-    sites[i] == sites[j];
+    sites(i) == sites(j);
   }
 
   def find(i: Int): Int = {
-    sites[i]
+    sites(i)
   }
 
   def union(i: Int,j: Int): Unit = {
-    iid = sites[i];
-    jid = sites[j];
-    for (k  <- 0 to nsites) {
-      if (sites[k] == jid) sites[k] = iid;
+    val iid = sites(i);
+    val jid = sites(j);
+    if (iid == jid) {
+      return;
     }
+    for (k  <- 0 until n) {
+      if (sites(k) == jid) sites(k) = iid;
+    }
+    nsites -= 1;
   }
 
-    public static void main(String[] args) {
-        int n = StdIn.readInt();
-        QuickFindUF uf = new QuickFindUF(n);
-        while (!StdIn.isEmpty()) {
-            int p = StdIn.readInt();
-            int q = StdIn.readInt();
-            if (uf.connected(p, q)) continue;
-            uf.union(p, q);
-            StdOut.println(p + " " + q);
-        }
-        StdOut.println(uf.count() + " components");
-    }
-
-
 }
+
+// object Demo {
+//   def main(args: Array[String]) {
+//     val uf = new QuickFindUF(10);
+//     uf.union(0,1);
+//     uf.union(0,2);
+//     uf.union(0,3);
+//     uf.union(4,5);
+//     uf.union(6,7);
+//     uf.union(6,8);
+//     println("Have " + uf.count + " components");
+//   }
+// }
+
+
+// object QuickFindGen {
+//   def main(args: Array[String]) {
+//     val n = readInt();
+//     val uf = new QuickFindUF(n);
+//     var current_string = readLine();
+//     while (current_string != null) {
+//       val p = current_string(0).toInt();
+//       val q = current_string(2).toInt();
+//       uf.union(p, q);
+//     }
+//     println(uf count + " components");
+//   }
+// }  
 
